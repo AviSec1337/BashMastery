@@ -1,6 +1,6 @@
 # 🌟 CMD Challenge Solutions
 
-This repository contains solutions to various command-line tasks from the [CMD Challenge](https://cmdchallenge.com/). Each challenge is designed to test and improve your shell scripting and command-line skills. Below is the list of challenges and their solutions, presented in a structured and easy-to-navigate format.
+This repository contains solutions to various command-line tasks from the [CMD Challenge](https://cmdchallenge.com/). Each challenge is designed to test and improve your shell scripting and command-line skills. Below is the list of challenges and their solutions with explanation, presented in a structured and easy-to-navigate format.
 
 ---
 
