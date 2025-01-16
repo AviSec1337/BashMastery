@@ -227,3 +227,78 @@ awk '!seen[$0]++' faces.txt
 **Solution:**
 ```bash
 < war_and_peace.txt tr -s '!' | sed 's/!\([a-z]\)/\1/g' | sed 's/!\( [a-z]\)/\1/g' | sed 's/!\.\!/./g' | sed 's/ !/ /g'
+```
+
+---
+
+### 26. Print Hello World (Alternate)
+**Task:** Print "Hello World" using escaped space.  
+**Solution:**
+```bash
+echo hello\ world
+```
+
+---
+
+### 27. Count Tab Characters
+**Task:** Count lines containing tab characters in `file-with-tabs.txt`.  
+**Solution:**
+```bash
+grep -c $'	' ./file-with-tabs.txt
+```
+
+---
+
+### 28. Remove Files Starting with Dash
+**Task:** Remove files starting with a dash in the filename.  
+**Solution:**
+```bash
+find . -name '-[a-z]*' -delete
+```
+
+---
+
+### 29. Remove Files without Specific Extensions
+**Task:** Remove all files without `.txt` and `.exe` extensions recursively.  
+**Solution:**
+```bash
+find . -type f -not \( -name '*.txt' -or -name '*.exe' \) -delete
+```
+
+---
+
+### 30. Common IPs in Logs
+**Task:** Print IP addresses common to `access.log.1` and `access.log.2`.  
+**Solution:**
+```bash
+comm -12 <(cut -d' ' -f1 access.log.1 | sort) <(cut -d' ' -f1 access.log.2 | sort)
+```
+
+---
+
+### 31. Reverse Lines
+**Task:** Print the lines of the file `reverse-me.txt` in reverse order so that the last line appears first.  
+**Solution:**
+```bash
+tac reverse-me.txt
+```
+
+---
+
+### 32. Unique Primes
+**Task:** Print the number of unique prime numbers in `random-numbers.txt`.  
+**Solution:**
+```bash
+cat random-numbers.txt | sort | uniq | factor | awk 'NF==2' | wc -l
+```
+
+---
+
+### 33. Find Ports in Netstat
+**Task:** Print all IPv4 listening ports from `netstat.out`, sorted in descending order.  
+**Solution:**
+```bash
+grep '\bLISTEN\b' netstat.out | grep -oP 'tcp\s+.*:\K\d+' | sort -nr
+```
+
+---
