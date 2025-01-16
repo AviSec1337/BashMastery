@@ -431,3 +431,209 @@ grep '\bLISTEN\b' netstat.out | grep -oP 'tcp\s+.*:\K\d+' | sort -nr
 
 ---
 
+### 34. **Monitor File Changes 📋**
+**Task:** Watch for any changes in the `logs` directory and display them in real-time.  
+**Solution:**
+```bash
+inotifywait -m logs
+```
+**Explanation:**
+- `inotifywait` is a tool for monitoring file system events.
+- `-m` enables monitoring mode to keep the command running.
+- `logs` specifies the directory to monitor. It displays events like file modifications, deletions, and creations.
+
+---
+
+### 35. **Detect Failed SSH Login Attempts 🚨**
+**Task:** Count the number of failed SSH login attempts in `/var/log/auth.log`.  
+**Solution:**
+```bash
+grep "Failed password" /var/log/auth.log | wc -l
+```
+**Explanation:**
+- `grep "Failed password"` searches for failed login attempts in the log file.
+- `wc -l` counts the number of matching lines.
+
+---
+
+### 36. **List Open Network Connections 🌐**
+**Task:** Display all open network connections and their statuses.  
+**Solution:**
+```bash
+netstat -tuln
+```
+**Explanation:**
+- `netstat` displays network statistics.
+- `-tuln` shows TCP/UDP connections (`t`/`u`), listening ports (`l`), and numeric addresses (`n`).
+
+---
+
+### 37. **Search for SUID Files 🛡️**
+**Task:** Find all files with the SUID bit set on the system.  
+**Solution:**
+```bash
+find / -perm -4000 2>/dev/null
+```
+**Explanation:**
+- `find /` searches the entire filesystem.
+- `-perm -4000` matches files with the SUID bit set.
+- `2>/dev/null` suppresses permission-denied errors.
+
+---
+
+### 38. **Analyze Disk Usage 📊**
+**Task:** Find the top 5 largest directories in the `/var` directory.  
+**Solution:**
+```bash
+du -h /var | sort -rh | head -n 5
+```
+**Explanation:**
+- `du -h /var` calculates the size of each directory in human-readable format.
+- `sort -rh` sorts by size in reverse order.
+- `head -n 5` displays the top 5 results.
+
+---
+
+### 39. **Check for Active Users 👤**
+**Task:** List all currently logged-in users.  
+**Solution:**
+```bash
+who
+```
+**Explanation:**
+- `who` displays information about users currently logged into the system.
+
+---
+
+### 40. **Identify Open Files by Process 🔍**
+**Task:** List all open files by the `nginx` process.  
+**Solution:**
+```bash
+lsof -c nginx
+```
+**Explanation:**
+- `lsof` lists open files.
+- `-c nginx` filters for files opened by processes named `nginx`.
+
+---
+
+### 41. **Verify File Integrity 🔒**
+**Task:** Generate a SHA256 checksum for the file `backup.tar.gz`.  
+**Solution:**
+```bash
+sha256sum backup.tar.gz
+```
+**Explanation:**
+- `sha256sum` calculates the SHA256 hash of a file to verify its integrity.
+
+---
+
+### 42. **Securely Delete Files 🧹**
+**Task:** Permanently delete `sensitive.txt` without recovery.  
+**Solution:**
+```bash
+shred -u sensitive.txt
+```
+**Explanation:**
+- `shred` overwrites the file multiple times before deleting it.
+- `-u` ensures the file is deleted after shredding.
+
+---
+
+### 43. **Monitor Memory Usage 📈**
+**Task:** Display real-time memory usage.  
+**Solution:**
+```bash
+watch -n 1 free -h
+```
+**Explanation:**
+- `watch -n 1` runs a command every second.
+- `free -h` displays memory usage in human-readable format.
+
+---
+
+### 44. **Find Suspicious Processes 🕵️‍♂️**
+**Task:** Identify processes using high CPU usage.  
+**Solution:**
+```bash
+ps aux --sort=-%cpu | head -n 10
+```
+**Explanation:**
+- `ps aux` lists all running processes.
+- `--sort=-%cpu` sorts them by CPU usage in descending order.
+- `head -n 10` shows the top 10 results.
+
+---
+
+### 45. **Extract Subdomain from URL 🌐**
+**Task:** Extract the subdomain from a list of URLs in `websites.txt`.  
+**Solution:**
+```bash
+awk -F[/:] '{print $4}' websites.txt
+```
+**Explanation:**
+- `awk` processes text line by line.
+- `-F[/:]` uses `/` and `:` as field separators.
+- `{print $4}` extracts the fourth field, which is the subdomain or domain.
+
+---
+
+### 46. **List Recently Modified Files 📆**
+**Task:** Find files modified in the last 24 hours.  
+**Solution:**
+```bash
+find . -type f -mtime -1
+```
+**Explanation:**
+- `find . -type f` locates all files.
+- `-mtime -1` matches files modified within the last day.
+
+---
+
+### 47. **Check Open Ports 🔓**
+**Task:** Display all open ports on the system.  
+**Solution:**
+```bash
+ss -tuln
+```
+**Explanation:**
+- `ss` displays socket statistics.
+- `-tuln` shows TCP/UDP connections, listening ports, and numeric addresses.
+
+---
+
+### 48. **Kill Processes by Name 🛑**
+**Task:** Terminate all processes named `apache2`.  
+**Solution:**
+```bash
+pkill apache2
+```
+**Explanation:**
+- `pkill` sends signals to processes by name.
+- `apache2` is the name of the processes to terminate.
+
+---
+
+### 49. **Detect Hidden Files 📁**
+**Task:** Find all hidden files in the current directory.  
+**Solution:**
+```bash
+find . -type f -name ".*"
+```
+**Explanation:**
+- `find . -type f` locates all files.
+- `-name ".*"` matches hidden files (names starting with `.`).
+
+---
+
+### 50. **Track System Uptime ⏳**
+**Task:** Display how long the system has been running.  
+**Solution:**
+```bash
+uptime
+```
+**Explanation:**
+- `uptime` shows the current time, uptime duration, and load averages.
+
+---
+
